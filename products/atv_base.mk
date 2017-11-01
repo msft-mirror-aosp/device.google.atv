@@ -43,6 +43,7 @@ PRODUCT_PACKAGES += \
     libstagefright_soft_amrwbenc \
     libstagefright_soft_avcdec \
     libstagefright_soft_avcenc \
+    libstagefright_soft_flacdec \
     libstagefright_soft_flacenc \
     libstagefright_soft_g711dec \
     libstagefright_soft_gsmdec \
@@ -69,7 +70,6 @@ PRODUCT_PACKAGES += \
     FusedLocation \
     InputDevices \
     KeyChain \
-    PicoTts \
     PacProcessor \
     PrintSpooler \
     ProxyHandler \
@@ -84,7 +84,6 @@ PRODUCT_PACKAGES += \
     SystemUI \
     librs_jni \
     audio.primary.default \
-    audio_policy.default \
     clatd \
     clatd.conf \
     local_time.default \
@@ -114,6 +113,17 @@ endif
 
 # To enable access to /dev/dvb*
 BOARD_SEPOLICY_DIRS += device/google/atv/sepolicy
+
+# This property defines the tutorial content for this device
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.tutorials_content.android=android8
+
+# Content for ATV Tutorials / Post-Setup Tour
+PRODUCT_COPY_FILES += \
+    device/google/atv/tutorial-library-google.zip.etag:system/media/tutorial-library-google.zip.etag
+
+PRODUCT_COPY_FILES += \
+    device/google/atv/tutorial-library-google.zip:system/media/tutorial-library-google.zip
 
 $(call inherit-product-if-exists, frameworks/base/data/sounds/AllAudio.mk)
 $(call inherit-product-if-exists, external/svox/pico/lang/all_pico_languages.mk)
